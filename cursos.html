@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cursos Unifatecie EAD – Polos Barra do Mendes e Ipupiara</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #f4f4f5;
+      color: #111827;
+    }
+    :root {
+      --primary: #f97316;
+      --dark: #111111;
+      --white: #ffffff;
+      --light: #f4f4f5;
+      --gray: #6b7280;
+      --accent: #25D366;
+      --radius: 12px;
+    }
+
+    /* ===== HEADER ===== */
+    header {
+      background: linear-gradient(135deg, #111111 45%, #18181b 100%);
+      color: var(--white);
+      text-align: center;
+      padding: 40px 20px 60px;
+      position: relative;
+      overflow: hidden;
+    }
+    header::before {
+      content: '';
+      position: absolute;
+      top: -80px; right: -80px;
+      width: 300px; height: 300px;
+      background: rgba(249,115,22,0.15);
+      border-radius: 50%;
+    }
+    header::after {
+      content: '';
+      position: absolute;
+      bottom: -60px; left: -60px;
+      width: 220px; height: 220px;
+      background: rgba(255,255,255,0.04);
+      border-radius: 50%;
+    }
+    .logo-img {
+      max-height: 70px;
+      width: auto;
+      margin: 0 auto 14px;
+      display: block;
+      position: relative; z-index: 1;
+    }
+    header h1 {
+      font-size: clamp(1.4rem, 3.5vw, 2.2rem);
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 10px;
+      position: relative; z-index: 1;
+    }
+    header p {
+      font-size: 1rem;
+      opacity: .85;
+      max-width: 620px;
+      margin: 0 auto 28px;
+      position: relative; z-index: 1;
+    }
+
+    /* ===== WAVE ===== */
+    .wave { display: block; width: 100%; background: #111111; margin-bottom: -2px; }
+
+    /* ===== BOTÕES CTA ===== */
+    .cta-group {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      padding: 28px 20px;
+      background: var(--white);
+      border-bottom: 1px solid #e5e7eb;
+    }
+    .btn-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 700;
+      font-size: .88rem;
+      padding: 12px 20px;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: transform .2s, opacity .2s;
+      box-shadow: 0 4px 14px rgba(0,0,0,.15);
+      white-space: nowrap;
+    }
+    .btn-cta:hover { transform: translateY(-2px); opacity: .92; }
+    .btn-cta svg { width: 18px; height: 18px; fill: var(--white); flex-shrink: 0; }
+    .btn-cta.barra  { background: var(--accent); color: var(--white); }
+    .btn-cta.ipupiara { background: #16a34a; color: var(--white); }
+    .btn-cta.polo   { background: var(--primary); color: #111; }
+
+    /* ===== FILTROS ===== */
+    .filtros-section {
+      max-width: 1100px;
+      margin: 32px auto 0;
+      padding: 0 20px;
+    }
+    .filtros-titulo {
+      text-align: center;
+      font-size: clamp(1.3rem, 3vw, 1.9rem);
+      font-weight: 800;
+      color: var(--dark);
+      margin-bottom: 8px;
+    }
+    .filtros-sub {
+      text-align: center;
+      color: var(--gray);
+      font-size: .95rem;
+      margin-bottom: 24px;
+    }
+    .divider {
+      width: 60px; height: 4px;
+      background: var(--primary);
+      border-radius: 4px;
+      margin: 0 auto 32px;
+    }
+
+    /* Tabs Graduação / Pós */
+    .tabs {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+    }
+    .tab-btn {
+      padding: 11px 28px;
+      border-radius: 50px;
+      border: 2px solid var(--primary);
+      background: transparent;
+      color: var(--primary);
+      font-weight: 700;
+      font-size: .95rem;
+      cursor: pointer;
+      transition: background .2s, color .2s, transform .2s;
+      font-family: inherit;
+    }
+    .tab-btn.ativo, .tab-btn:hover {
+      background: var(--primary);
+      color: var(--dark);
+      transform: translateY(-2px);
+    }
+
+    /* Filtro por área */
+    .area-filtros {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 28px;
+    }
+    .area-btn {
+      padding: 7px 16px;
+      border-radius: 50px;
+      border: 1.5px solid #d1d5db;
+      background: var(--white);
+      color: #374151;
+      font-size: .82rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: border-color .2s, background .2s, color .2s;
+      font-family: inherit;
+    }
+    .area-btn:hover, .area-btn.ativo {
+      border-color: var(--primary);
+      background: #fff7ed;
+      color: var(--primary);
+    }
+
+    /* Campo de busca */
+    .busca-wrapper {
+      max-width: 460px;
+      margin: 0 auto 32px;
+      position: relative;
+    }
+    .busca-wrapper input {
+      width: 100%;
+      padding: 12px 16px 12px 42px;
+      border: 1.5px solid #d1d5db;
+      border-radius: 50px;
+      font-size: .95rem;
+      color: var(--dark);
+      background: var(--white);
+      font-family: inherit;
+      transition: border-color .2s;
+    }
+    .busca-wrapper input:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+    .busca-icon {
+      position: absolute;
+      left: 14px; top: 50%;
+      transform: translateY(-50%);
+      font-size: 1rem;
+      color: var(--gray);
+      pointer-events: none;
+    }
+
+    /* ===== GRADE DE CURSOS ===== */
+    .cursos-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px 60px;
+    }
+
+    /* Grupo de área */
+    .grupo-area {
+      margin-bottom: 36px;
+    }
+    .grupo-titulo {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      margin-bottom: 14px;
+      padding-bottom: 6px;
+      border-bottom: 2px solid #fed7aa;
+    }
+
+    .cursos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 14px;
+    }
+
+    .curso-card {
+      background: var(--white);
+      border-radius: 10px;
+      padding: 16px;
+      border: 1px solid #e5e7eb;
+      border-left: 4px solid var(--primary);
+      box-shadow: 0 2px 8px rgba(0,0,0,.04);
+      transition: transform .15s, box-shadow .15s;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .curso-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 18px rgba(0,0,0,.09);
+    }
+    .curso-card.oculto { display: none; }
+
+    .curso-nome {
+      font-weight: 700;
+      font-size: .95rem;
+      color: var(--dark);
+      line-height: 1.3;
+    }
+    .curso-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 2px;
+    }
+    .tag {
+      font-size: .72rem;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 50px;
+      background: #f3f4f6;
+      color: #374151;
+    }
+    .tag.modalidade { background: #eff6ff; color: #1d4ed8; }
+    .tag.duracao    { background: #f0fdf4; color: #15803d; }
+    .tag.valor      { background: #fff7ed; color: #c2410c; font-weight: 700; }
+
+    /* Nenhum resultado */
+    .vazio {
+      text-align: center;
+      color: var(--gray);
+      font-size: 1rem;
+      padding: 40px 0;
+      display: none;
+    }
+
+    /* ===== NOTA RODAPÉ ===== */
+    .nota {
+      max-width: 1100px;
+      margin: 0 auto 16px;
+      padding: 0 20px;
+      font-size: .78rem;
+      color: var(--gray);
+      text-align: center;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #18181b;
+      color: rgba(229,231,235,.8);
+      text-align: center;
+      padding: 28px 20px;
+      font-size: .85rem;
+    }
+    footer strong { color: var(--primary); }
+    footer a { color: var(--primary); text-decoration: none; }
+    footer .back-link {
+      display: inline-block;
+      margin-bottom: 14px;
+      color: var(--primary);
+      font-weight: 700;
+      font-size: .9rem;
+      text-decoration: none;
+    }
+    footer .back-link:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header>
+  <img src="logo.png" alt="Unifatecie EAD" class="logo-img"/>
+  <h1>Cursos de Graduação e Pós-Graduação<br>
+    <span style="color:#f97316;">EAD Unifatecie</span>
+  </h1>
+  <p>Confira todos os cursos disponíveis, filtre por área e fale com o polo mais próximo.</p>
+</header>
+
+<svg class="wave" viewBox="0 0 1440 60" preserveAspectRatio="none" height="50" xmlns="http://www.w3.org/2000/svg">
+  <path d="M0,40 C360,80 1080,0 1440,40 L1440,0 L0,0 Z" fill="#111111"/>
+</svg>
+
+<!-- ===== BOTÕES CTA TOPO ===== -->
+<div class="cta-group">
+  <a href="https://wa.me/5574981270882?text=Ol%C3%A1!%20Tenho%20interesse%20em%20um%20curso%20EAD%20da%20Unifatecie%20-%20Polo%20Barra%20do%20Mendes."
+     class="btn-cta barra" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 2C6.477 2 2 6.477 2 12c0 1.89.525 3.659 1.438 5.168L2 22l4.985-1.407A9.96 9.96 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18.18a8.18 8.18 0 01-4.169-1.14l-.299-.178-3.094.873.858-3.02-.195-.31A8.18 8.18 0 013.82 12c0-4.517 3.664-8.18 8.18-8.18 4.517 0 8.18 3.663 8.18 8.18 0 4.516-3.663 8.18-8.18 8.18z"/></svg>
+    Fale com o Polo Barra do Mendes
+  </a>
+  <a href="https://wa.me/5574981270882?text=Ol%C3%A1!%20Tenho%20interesse%20em%20um%20curso%20EAD%20da%20Unifatecie%20-%20Polo%20Ipupiara."
+     class="btn-cta ipupiara" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 2C6.477 2 2 6.477 2 12c0 1.89.525 3.659 1.438 5.168L2 22l4.985-1.407A9.96 9.96 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18.18a8.18 8.18 0 01-4.169-1.14l-.299-.178-3.094.873.858-3.02-.195-.31A8.18 8.18 0 013.82 12c0-4.517 3.664-8.18 8.18-8.18 4.517 0 8.18 3.663 8.18 8.18 0 4.516-3.663 8.18-8.18 8.18z"/></svg>
+    Fale com o Polo Ipupiara
+  </a>
+  <a href="https://wa.me/5574999575795?text=Ol%C3%A1!%20Gostaria%20de%20encontrar%20um%20polo%20Unifatecie%20EAD%20perto%20de%20mim."
+     class="btn-cta polo" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="#111"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+    Encontre um Polo perto de você
+  </a>
+</div>
+
+<!-- ===== FILTROS ===== -->
+<div class="filtros-section">
+  <h2 class="filtros-titulo">Encontre seu curso</h2>
+  <p class="filtros-sub">Use os filtros abaixo para navegar pelos cursos disponíveis.</p>
+  <div class="divider"></div>
+
+  <!-- Tabs -->
+  <div class="tabs">
+    <button class="tab-btn ativo" onclick="mudarTab('graduacao')">🎓 Graduação</button>
+    <button class="tab-btn" onclick="mudarTab('pos')">📚 Pós-Graduação</button>
+  </div>
+
+  <!-- Filtros de área -->
+  <div class="area-filtros" id="areaFiltros">
+    <button class="area-btn ativo" onclick="filtrarArea('todas')">Todas as áreas</button>
+    <button class="area-btn" onclick="filtrarArea('saude')">Saúde</button>
+    <button class="area-btn" onclick="filtrarArea('educacao')">Educação</button>
+    <button class="area-btn" onclick="filtrarArea('empresarial')">Empresarial</button>
+    <button class="area-btn" onclick="filtrarArea('tecnologia')">Tecnologia</button>
+    <button class="area-btn" onclick="filtrarArea('engenharia')">Engenharia</button>
+    <button class="area-btn" onclick="filtrarArea('comunicacao')">Comunicação</button>
+    <button class="area-btn" onclick="filtrarArea('outras')">Outras áreas</button>
+  </div>
+
+  <!-- Busca -->
+  <div class="busca-wrapper">
+    <span class="busca-icon">🔍</span>
+    <input type="text" id="campoBusca" placeholder="Buscar curso..." oninput="filtrarBusca()"/>
+  </div>
+</div>
+
+<!-- ===== LISTA DE CURSOS ===== -->
+<div class="cursos-container">
+
+  <div id="tab-graduacao">
+
+    <!-- SAÚDE -->
+    <div class="grupo-area" data-area="saude">
+      <div class="grupo-titulo">Saúde</div>
+      <div class="cursos-grid">
+        <div class="curso-card" data-area="saude" data-tab="graduacao">
+          <div class="curso-nome">Biomedicina</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Bacharelado</span>
+            <span class="tag duracao">4 anos</span>
+            <span class="tag valor">R$ 214,75/mês</span>
+          </div>
+        </div>
+        <div class="curso-card" data-area="saude" data-tab="graduacao">
+          <div class="curso-nome">Farmácia</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Bacharelado</span>
+            <span class="tag duracao">4 anos</span>
+            <span class="tag valor">R$ 214,75/mês</span>
+          </div>
+        </div>
+        <div class="curso-card" data-area="saude" data-tab="graduacao">
+          <div class="curso-nome">Fisioterapia</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Bacharelado</span>
+            <span class="tag duracao">4 anos</span>
+            <span class="tag valor">R$ 214,75/mês</span>
+          </div>
+        </div>
+        <div class="curso-card" data-area="saude" data-tab="graduacao">
+          <div class="curso-nome">Fonoaudiologia</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Bacharelado</span>
+            <span class="tag duracao">4 anos</span>
+            <span class="tag valor">R$ 214,75/mês</span>
+          </div>
+        </div>
+        <div class="curso-card" data-area="saude" data-tab="graduacao">
+          <div class="curso-nome">Nutrição</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Bacharelado</span>
+            <span class="tag duracao">4 anos</span>
+            <span class="tag valor">R$ 214,75/mês</span>
+          </div>
+        </div>
+        <div class="curso-card" data-area="saude" data-tab="graduacao">
+          <div class="curso-nome">Podologia</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Tecnólogo</span>
+            <span class="tag duracao">2,5 anos</span>
+            <span class="tag valor">R$ 214,75/mês</span>
+          </div>
+        </div>
+        <div class="curso-card" data-area="saude" data-tab="graduacao">
+          <div class="curso-nome">Radiologia</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Tecnólogo</span>
+            <span class="tag duracao">3 anos</span>
+            <span class="tag valor">R$ 214,75/mês</span>
+          </div>
+        </div>
+        <div class="curso-card" data-area="saude" data-tab="graduacao">
+          <div class="curso-nome">Terapia Ocupacional</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Bacharelado</span>
+            <span class="tag duracao">4 anos</span>
+            <span class="tag valor">R$ 214,75/mês</span>
+          </div>
+        </div>
+        <div class="curso-card" data-area="saude" data-tab="graduacao">
+          <div class="curso-nome">Estética e Cosmética</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Tecnólogo</span>
+            <span class="tag duracao">2,5 anos</span>
+            <span class="tag valor">R$ 124,75/mês</span>
+          </div>
+        </div>
+        <div class="curso-card" data-area="saude" data-tab="graduacao">
+          <div class="curso-nome">Terapias Integrativas e Complementares</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Tecnólogo</span>
+            <span class="tag duracao">2,5 anos</span>
+            <span class="tag valor">R$ 124,75/mês</span>
+          </div>
+        </div>
+        <div class="curso-card" data-area="saude" data-tab="graduacao">
+          <div class="curso-nome">Agente Comunitário</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Tecnólogo</span>
+            <span class="tag duracao">2,5 anos</span>
+            <span class="tag valor">R$ 124,75/mês</span>
+          </div>
+        </div>
+        <div class="curso-card" data-area="saude" data-tab="graduacao">
+          <div class="curso-nome">Psicopedagogia</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Bacharelado</span>
+            <span class="tag duracao">4 anos</span>
+            <span class="tag valor">R$ 82,50/mês</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EDUCAÇÃO -->
+    <div class="grupo-area" data-area="educacao">
+      <div class="grupo-titulo">Educação</div>
+      <div class="cursos-grid">
+        <div class="curso-card" data-area="educacao" data-tab="graduacao">
+          <div class="curso-nome">Pedagogia</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Licenciatura</span>
+            <span class="tag duracao">4 anos</span>
+            <span class="tag valor">R$ 82,50/mês</span>
+          </div>
+        </div>
+        <div class="curso-card" data-area="educacao" data-tab="graduacao">
+          <div class="curso-nome">Educação Especial</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Licenciatura</span>
+            <span class="tag duracao">4 anos</span>
+            <span class="tag valor">R$ 82,50/mês</span>
+          </div>
+        </div>
+        <div class="curso-card" data-area="educacao" data-tab="graduacao">
+          <div class="curso-nome">Educação Física – Bacharelado</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Bacharelado</span>
+            <span class="tag duracao">4 anos</span>
+            <span class="tag valor">R$ 82,50/mês</span>
+          </div>
+        </div>
+        <div class="curso-card" data-area="educacao" data-tab="graduacao">
+          <div class="curso-nome">Educação Física – Licenciatura</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Licenciatura</span>
+            <span class="tag duracao">4 anos</span>
+            <span class="tag valor">R$ 82,50/mês</span>
+          </div>
+        </div>
+        <div class="curso-card" data-area="educacao" data-tab="graduacao">
+          <div class="curso-nome">Letras (Português/Inglês)</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Licenciatura</span>
+            <span class="tag duracao">4 anos</span>
+            <span class="tag valor">R$ 82,50/mês</span>
+          </div>
+        </div>
+        <div class="curso-card" data-area="educacao" data-tab="graduacao">
+          <div class="curso-nome">Letras (Português/Libras)</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Licenciatura</span>
+            <span class="tag duracao">4 anos</span>
+            <span class="tag valor">R$ 82,50/mês</span>
+          </div>
+        </div>
+        <div class="curso-card" data-area="educacao" data-tab="graduacao">
+          <div class="curso-nome">História</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Licenciatura</span>
+            <span class="tag duracao">4 anos</span>
+            <span class="tag valor">R$ 82,50/mês</span>
+          </div>
+        </div>
+        <div class="curso-card" data-area="educacao" data-tab="graduacao">
+          <div class="curso-nome">Geografia</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Licenciatura</span>
+            <span class="tag duracao">4 anos</span>
+            <span class="tag valor">R$ 82,50/mês</span>
+          </div>
+        </div>
+        <div class="curso-card" data-area="educacao" data-tab="graduacao">
+          <div class="curso-nome">Matemática</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Licenciatura</span>
+            <span class="tag duracao">4 anos</span>
+            <span class="tag valor">R$ 82,50/mês</span>
+          </div>
+        </div>
+        <div class="curso-card" data-area="educacao" data-tab="graduacao">
+          <div class="curso-nome">Filosofia</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Licenciatura</span>
+            <span class="tag duracao">4 anos</span>
+            <span class="tag valor">R$ 82,50/mês</span>
+          </div>
+        </div>
+        <div class="curso-card" data-area="educacao" data-tab="graduacao">
+          <div class="curso-nome">Sociologia</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Licenciatura</span>
+            <span class="tag duracao">4 anos</span>
+            <span class="tag valor">R$ 82,50/mês</span>
+          </div>
+        </div>
+        <div class="curso-card" data-area="educacao" data-tab="graduacao">
+          <div class="curso-nome">Ciências Biológicas – Bacharelado</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Bacharelado</span>
+            <span class="tag duracao">4 anos</span>
+            <span class="tag valor">R$ 82,50/mês</span>
+          </div>
+        </div>
+        <div class="curso-card" data-area="educacao" data-tab="graduacao">
+          <div class="curso-nome">Ciências Biológicas – Licenciatura</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Licenciatura</span>
+            <span class="tag duracao">4 anos</span>
+            <span class="tag valor">R$ 82,50/mês</span>
+          </div>
+        </div>
+        <div class="curso-card" data-area="educacao" data-tab="graduacao">
+          <div class="curso-nome">Artes</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Licenciatura</span>
+            <span class="tag duracao">4 anos</span>
+            <span class="tag valor">R$ 82,50/mês</span>
+          </div>
+        </div>
+        <div class="curso-card" data-area="educacao" data-tab="graduacao">
+          <div class="curso-nome">Música</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Licenciatura</span>
+            <span class="tag duracao">4 anos</span>
+            <span class="tag valor">R$ 82,50/mês</span>
+          </div>
+        </div>
+        <div class="curso-card" data-area="educacao" data-tab="graduacao">
+          <div class="curso-nome">Processos Escolares</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Tecnólogo</span>
+            <span class="tag duracao">2 anos</span>
+            <span class="tag valor">R$ 74,75/mês</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EMPRESARIAL -->
+    <div class="grupo-area" data-area="empresarial">
+      <div class="grupo-titulo">Empresarial</div>
+      <div class="cursos-grid">
+        <div class="curso-card" data-area="empresarial" data-tab="graduacao">
+          <div class="curso-nome">Administração</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Bacharelado</span>
+            <span class="tag duracao">3 anos</span>
+            <span class="tag valor">R$ 82,50/mês</span>
+          </div>
+        </div>
+        <div class="curso-card" data-area="empresarial" data-tab="graduacao">
+          <div class="curso-nome">Ciências Contábeis</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Bacharelado</span>
+            <span class="tag duracao">3 anos</span>
+            <span class="tag valor">R$ 82,50/mês</span>
+          </div>
+        </div>
+        <div class="curso-card" data-area="empresarial" data-tab="graduacao">
+          <div class="curso-nome">Ciências Econômicas</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Bacharelado</span>
+            <span class="tag duracao">3 anos</span>
+            <span class="tag valor">R$ 74,75/mês</span>
+          </div>
+        </div>
+        <div class="curso-card" data-area="empresarial" data-tab="graduacao">
+          <div class="curso-nome">Gestão Financeira</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Tecnólogo</span>
+            <span class="tag duracao">1,5 anos</span>
+            <span class="tag valor">R$ 82,50/mês</span>
+          </div>
+        </div>
+        <div class="curso-card" data-area="empresarial" data-tab="graduacao">
+          <div class="curso-nome">Gestão de Recursos Humanos</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Tecnólogo</span>
+            <span class="tag duracao">1,5 anos</span>
+            <span class="tag valor">R$ 82,50/mês</span>
+          </div>
+        </div>
+        <div class="curso-card" data-area="empresarial" data-tab="graduacao">
+          <div class="curso-nome">Gestão Comercial</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Tecnólogo</span>
+            <span class="tag duracao">1,5 anos</span>
+            <span class="tag valor">R$ 82,50/mês</span>
+          </div>
+        </div>
+        <div class="curso-card" data-area="empresarial" data-tab="graduacao">
+          <div class="curso-nome">Gestão Pública</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Tecnólogo</span>
+            <span class="tag duracao">1,5 anos</span>
+            <span class="tag valor">R$ 82,50/mês</span>
+          </div>
+        </div>
+        <div class="curso-card" data-area="empresarial" data-tab="graduacao">
+          <div class="curso-nome">Gestão Hospitalar</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Tecnólogo</span>
+            <span class="tag duracao">3 anos</span>
+            <span class="tag valor">R$ 82,50/mês</span>
+          </div>
+        </div>
+        <div class="curso-card" data-area="empresarial" data-tab="graduacao">
+          <div class="curso-nome">Gestão do Agronegócio</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Tecnólogo</span>
+            <span class="tag duracao">2,5 anos</span>
+            <span class="tag valor">R$ 82,50/mês</span>
+          </div>
+        </div>
+        <div class="curso-card" data-area="empresarial" data-tab="graduacao">
+          <div class="curso-nome">Gestão da Qualidade</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Tecnólogo</span>
+            <span class="tag duracao">1,5 anos</span>
+            <span class="tag valor">R$ 82,50/mês</span>
+          </div>
+        </div>
+        <div class="curso-card" data-area="empresarial" data-tab="graduacao">
+          <div class="curso-nome">Gestão da Produção Industrial</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Tecnólogo</span>
+            <span class="tag duracao">2,5 anos</span>
+            <span class="tag valor">R$ 82,50/mês</span>
+          </div>
+        </div>
+        <div class="curso-card" data-area="empresarial" data-tab="graduacao">
+          <div class="curso-nome">Processos Gerenciais</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Tecnólogo</span>
+            <span class="tag duracao">1,5 anos</span>
+            <span class="tag valor">R$ 82,50/mês</span>
+          </div>
+        </div>
+        <div class="curso-card" data-area="empresarial" data-tab="graduacao">
+          <div class="curso-nome">Comércio Exterior</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Tecnólogo</span>
+            <span class="tag duracao">1,5 anos</span>
+            <span class="tag valor">R$ 82,50/mês</span>
+          </div>
+        </div>
+        <div class="curso-card" data-area="empresarial" data-tab="graduacao">
+          <div class="curso-nome">Logística</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Tecnólogo</span>
+            <span class="tag duracao">1,5 anos</span>
+            <span class="tag valor">R$ 82,50/mês</span>
+          </div>
+        </div>
+        <div class="curso-card" data-area="empresarial" data-tab="graduacao">
+          <div class="curso-nome">Marketing</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Tecnólogo</span>
+            <span class="tag duracao">1,5 anos</span>
+            <span class="tag valor">R$ 82,50/mês</span>
+          </div>
+        </div>
+        <div class="curso-card" data-area="empresarial" data-tab="graduacao">
+          <div class="curso-nome">Negócios Imobiliários</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Tecnólogo</span>
+            <span class="tag duracao">1,5 anos</span>
+            <span class="tag valor">R$ 82,50/mês</span>
+          </div>
+        </div>
+        <div class="curso-card" data-area="empresarial" data-tab="graduacao">
+          <div class="curso-nome">Secretariado</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Tecnólogo</span>
+            <span class="tag duracao">1,5 anos</span>
+            <span class="tag valor">R$ 82,50/mês</span>
+          </div>
+        </div>
+        <div class="curso-card" data-area="empresarial" data-tab="graduacao">
+          <div class="curso-nome">Hotelaria</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Tecnólogo</span>
+            <span class="tag duracao">1,5 anos</span>
+            <span class="tag valor">R$ 82,50/mês</span>
+          </div>
+        </div>
+        <div class="curso-card" data-area="empresarial" data-tab="graduacao">
+          <div class="curso-nome">Serviço Social</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Bacharelado</span>
+            <span class="tag duracao">4 anos</span>
+            <span class="tag valor">R$ 82,50/mês</span>
+          </div>
+        </div>
+        <div class="curso-card" data-area="empresarial" data-tab="graduacao">
+          <div class="curso-nome">Gestão Ambiental</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Tecnólogo</span>
+            <span class="tag duracao">2 anos</span>
+            <span class="tag valor">R$ 82,50/mês</span>
+          </div>
+        </div>
+        <div class="curso-card" data-area="empresarial" data-tab="graduacao">
+          <div class="curso-nome">Teologia</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Bacharelado</span>
+            <span class="tag duracao">3 anos</span>
+            <span class="tag valor">R$ 74,75/mês</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TECNOLOGIA -->
+    <div class="grupo-area" data-area="tecnologia">
+      <div class="grupo-titulo">Tecnologia</div>
+      <div class="cursos-grid">
+        <div class="curso-card" data-area="tecnologia" data-tab="graduacao">
+          <div class="curso-nome">Análise e Desenvolvimento de Sistemas</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Tecnólogo</span>
+            <span class="tag duracao">2 anos</span>
+            <span class="tag valor">R$ 82,50/mês</span>
+          </div>
+        </div>
+        <div class="curso-card" data-area="tecnologia" data-tab="graduacao">
+          <div class="curso-nome">Segurança da Informação</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Tecnólogo</span>
+            <span class="tag duracao">2 anos</span>
+            <span class="tag valor">R$ 82,50/mês</span>
+          </div>
+        </div>
+        <div class="curso-card" data-area="tecnologia" data-tab="graduacao">
+          <div class="curso-nome">Sistemas para Internet</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Tecnólogo</span>
+            <span class="tag duracao">2 anos</span>
+            <span class="tag valor">R$ 82,50/mês</span>
+          </div>
+        </div>
+        <div class="curso-card" data-area="tecnologia" data-tab="graduacao">
+          <div class="curso-nome">Sistemas de Informação</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Bacharelado</span>
+            <span class="tag duracao">4 anos</span>
+            <span class="tag valor">R$ 82,50/mês</span>
+          </div>
+        </div>
+        <div class="curso-card" data-area="tecnologia" data-tab="graduacao">
+          <div class="curso-nome">Ciência do Futuro</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Tecnólogo</span>
+            <span class="tag duracao">1,5 anos</span>
+            <span class="tag valor">R$ 82,50/mês</span>
+          </div>
+        </div>
+        <div class="curso-card" data-area="tecnologia" data-tab="graduacao">
+          <div class="curso-nome">Jogos Digitais</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Tecnólogo</span>
+            <span class="tag duracao">2 anos</span>
+            <span class="tag valor">R$ 56,25/mês</span>
+          </div>
+        </div>
+        <div class="curso-card" data-area="tecnologia" data-tab="graduacao">
+          <div class="curso-nome">Engenharia de Software</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Bacharelado</span>
+            <span class="tag duracao">4 anos</span>
+            <span class="tag valor">R$ 124,75/mês</span>
+          </div>
+        </div>
+        <div class="curso-card" data-area="tecnologia" data-tab="graduacao">
+          <div class="curso-nome">Engenharia da Computação</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Bacharelado</span>
+            <span class="tag duracao">4 anos</span>
+            <span class="tag valor">R$ 199,75/mês</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ENGENHARIA -->
+    <div class="grupo-area" data-area="engenharia">
+      <div class="grupo-titulo">Engenharia</div>
+      <div class="cursos-grid">
+        <div class="curso-card" data-area="engenharia" data-tab="graduacao">
+          <div class="curso-nome">Engenharia Civil</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Bacharelado</span>
+            <span class="tag duracao">5 anos</span>
+            <span class="tag valor">R$ 199,75/mês</span>
+          </div>
+        </div>
+        <div class="curso-card" data-area="engenharia" data-tab="graduacao">
+          <div class="curso-nome">Engenharia Elétrica</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Bacharelado</span>
+            <span class="tag duracao">5 anos</span>
+            <span class="tag valor">R$ 199,75/mês</span>
+          </div>
+        </div>
+        <div class="curso-card" data-area="engenharia" data-tab="graduacao">
+          <div class="curso-nome">Engenharia Mecânica</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Bacharelado</span>
+            <span class="tag duracao">5 anos</span>
+            <span class="tag valor">R$ 199,75/mês</span>
+          </div>
+        </div>
+        <div class="curso-card" data-area="engenharia" data-tab="graduacao">
+          <div class="curso-nome">Engenharia Agronômica (Agronomia)</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Bacharelado</span>
+            <span class="tag duracao">5 anos</span>
+            <span class="tag valor">R$ 199,75/mês</span>
+          </div>
+        </div>
+        <div class="curso-card" data-area="engenharia" data-tab="graduacao">
+          <div class="curso-nome">Engenharia Ambiental e Sanitária</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Bacharelado</span>
+            <span class="tag duracao">5 anos</span>
+            <span class="tag valor">R$ 124,75/mês</span>
+          </div>
+        </div>
+        <div class="curso-card" data-area="engenharia" data-tab="graduacao">
+          <div class="curso-nome">Engenharia de Produção</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Bacharelado</span>
+            <span class="tag duracao">5 anos</span>
+            <span class="tag valor">R$ 124,75/mês</span>
+          </div>
+        </div>
+        <div class="curso-card" data-area="engenharia" data-tab="graduacao">
+          <div class="curso-nome">Arquitetura e Urbanismo</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Bacharelado</span>
+            <span class="tag duracao">5 anos</span>
+            <span class="tag valor">R$ 199,75/mês</span>
+          </div>
+        </div>
+        <div class="curso-card" data-area="engenharia" data-tab="graduacao">
+          <div class="curso-nome">Segurança do Trabalho</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Tecnólogo</span>
+            <span class="tag duracao">2,5 anos</span>
+            <span class="tag valor">R$ 82,50/mês</span>
+          </div>
+        </div>
+        <div class="curso-card" data-area="engenharia" data-tab="graduacao">
+          <div class="curso-nome">Processos Químicos</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Tecnólogo</span>
+            <span class="tag duracao">3 anos</span>
+            <span class="tag valor">R$ 82,50/mês</span>
+          </div>
+        </div>
+        <div class="curso-card" data-area="engenharia" data-tab="graduacao">
+          <div class="curso-nome">Química</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Bacharelado</span>
+            <span class="tag duracao">3,5 anos</span>
+            <span class="tag valor">R$ 82,50/mês</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COMUNICAÇÃO -->
+    <div class="grupo-area" data-area="comunicacao">
+      <div class="grupo-titulo">Comunicação e Design</div>
+      <div class="cursos-grid">
+        <div class="curso-card" data-area="comunicacao" data-tab="graduacao">
+          <div class="curso-nome">Jornalismo</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Bacharelado</span>
+            <span class="tag duracao">4 anos</span>
+            <span class="tag valor">R$ 82,50/mês</span>
+          </div>
+        </div>
+        <div class="curso-card" data-area="comunicacao" data-tab="graduacao">
+          <div class="curso-nome">Publicidade e Propaganda</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Bacharelado</span>
+            <span class="tag duracao">4 anos</span>
+            <span class="tag valor">R$ 82,50/mês</span>
+          </div>
+        </div>
+        <div class="curso-card" data-area="comunicacao" data-tab="graduacao">
+          <div class="curso-nome">Design Gráfico</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Tecnólogo</span>
+            <span class="tag duracao">1,5 anos</span>
+            <span class="tag valor">R$ 82,50/mês</span>
+          </div>
+        </div>
+        <div class="curso-card" data-area="comunicacao" data-tab="graduacao">
+          <div class="curso-nome">Design de Interiores</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Tecnólogo</span>
+            <span class="tag duracao">1,5 anos</span>
+            <span class="tag valor">R$ 82,50/mês</span>
+          </div>
+        </div>
+        <div class="curso-card" data-area="comunicacao" data-tab="graduacao">
+          <div class="curso-nome">Design de Moda</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Tecnólogo</span>
+            <span class="tag duracao">1,5 anos</span>
+            <span class="tag valor">R$ 82,50/mês</span>
+          </div>
+        </div>
+        <div class="curso-card" data-area="comunicacao" data-tab="graduacao">
+          <div class="curso-nome">Design de Produto</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Tecnólogo</span>
+            <span class="tag duracao">1,5 anos</span>
+            <span class="tag valor">R$ 56,25/mês</span>
+          </div>
+        </div>
+        <div class="curso-card" data-area="comunicacao" data-tab="graduacao">
+          <div class="curso-nome">Produção Publicitária</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Tecnólogo</span>
+            <span class="tag duracao">1,5 anos</span>
+            <span class="tag valor">R$ 56,25/mês</span>
+          </div>
+        </div>
+        <div class="curso-card" data-area="comunicacao" data-tab="graduacao">
+          <div class="curso-nome">Artes Visuais</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Bacharelado</span>
+            <span class="tag duracao">3 anos</span>
+            <span class="tag valor">R$ 82,50/mês</span>
+          </div>
+        </div>
+        <div class="curso-card" data-area="comunicacao" data-tab="graduacao">
+          <div class="curso-nome">Gastronomia</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Tecnólogo</span>
+            <span class="tag duracao">1,5 anos</span>
+            <span class="tag valor">R$ 82,50/mês</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- OUTRAS ÁREAS -->
+    <div class="grupo-area" data-area="outras">
+      <div class="grupo-titulo">Outras Áreas</div>
+      <div class="cursos-grid">
+        <div class="curso-card" data-area="outras" data-tab="graduacao">
+          <div class="curso-nome">Direito</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Bacharelado</span>
+            <span class="tag duracao">5 anos</span>
+            <span class="tag valor">A consultar</span>
+          </div>
+        </div>
+        <div class="curso-card" data-area="outras" data-tab="graduacao">
+          <div class="curso-nome">Biblioteconomia</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Bacharelado</span>
+            <span class="tag duracao">3 anos</span>
+            <span class="tag valor">R$ 82,50/mês</span>
+          </div>
+        </div>
+        <div class="curso-card" data-area="outras" data-tab="graduacao">
+          <div class="curso-nome">Investigação Forense e Perícia Criminal</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Tecnólogo</span>
+            <span class="tag duracao">3 anos</span>
+            <span class="tag valor">R$ 82,50/mês</span>
+          </div>
+        </div>
+        <div class="curso-card" data-area="outras" data-tab="graduacao">
+          <div class="curso-nome">Segurança Pública</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Tecnólogo</span>
+            <span class="tag duracao">1,5 anos</span>
+            <span class="tag valor">R$ 82,50/mês</span>
+          </div>
+        </div>
+        <div class="curso-card" data-area="outras" data-tab="graduacao">
+          <div class="curso-nome">Gestão de Segurança Privada</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Tecnólogo</span>
+            <span class="tag duracao">1,5 anos</span>
+            <span class="tag valor">R$ 82,50/mês</span>
+          </div>
+        </div>
+        <div class="curso-card" data-area="outras" data-tab="graduacao">
+          <div class="curso-nome">Estudos Teóricos Psicanalíticos e Sociais</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Bacharelado</span>
+            <span class="tag duracao">4 anos</span>
+            <span class="tag valor">R$ 199,75/mês</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /tab-graduacao -->
+
+  <!-- TAB PÓS-GRADUAÇÃO -->
+  <div id="tab-pos" style="display:none;">
+    <div class="grupo-area" data-area="todas">
+      <div class="cursos-grid">
+        <div class="curso-card" data-area="todas" data-tab="pos">
+          <div class="curso-nome">Em breve – Pós-Graduação</div>
+          <div class="curso-tags">
+            <span class="tag modalidade">Em atualização</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="vazio" id="semResultado">Nenhum curso encontrado para esta busca.</div>
+
+</div><!-- /cursos-container -->
+
+<p class="nota">* Valores referentes ao Módulo 2/2026 com desconto de pontualidade de 75%. Sujeitos a reajuste anual. Consulte o polo para confirmar condições vigentes.</p>
+
+<!-- ===== BOTÕES CTA RODAP
+
