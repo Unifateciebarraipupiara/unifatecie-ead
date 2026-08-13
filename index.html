@@ -185,41 +185,42 @@
     .btn-whatsapp:hover { background: #1ebe5c; transform: translateY(-2px); }
     .btn-whatsapp svg { width: 20px; height: 20px; fill: var(--white); flex-shrink: 0; }
 
-    /* ===== CURSOS ===== */
-    #cursos { background: var(--light); }
-    .cursos-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-      gap: 18px;
+    /* ===== FAIXA DE CURSOS ===== */
+    #cursos {
+      width: 100%;
+      background: linear-gradient(135deg, var(--primary), #ea580c);
+      padding: 32px 20px;
+      text-align: center;
     }
-    .curso-item {
-      background: var(--white);
-      border-radius: 10px;
-      padding: 18px 16px 16px;
-      border: 1px solid #e5e7eb;
-      border-left: 4px solid var(--primary);
-      box-shadow: 0 2px 8px rgba(0,0,0,.04);
-      transition: transform .15s, box-shadow .15s;
-    }
-    .curso-item:hover { transform: translateY(-3px); box-shadow: 0 4px 16px rgba(0,0,0,.08); }
-    .curso-nome { font-weight: 700; font-size: .98rem; color: var(--dark); margin-bottom: 6px; }
-    .curso-info { font-size: .98rem; color: var(--gray); display: flex; flex-direction: column; gap: 2px; }
-    .curso-info span strong { color: #374151; }
-    .cursos-footer { text-align: center; margin-top: 36px; }
-    .cursos-footer-destaque {
-      display: inline-block;
-      background: var(--primary);
+    .btn-cursos-disponiveis {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      background: var(--dark);
       color: var(--white);
-      font-weight: 700;
+      font-weight: 800;
       font-size: 1.05rem;
-      padding: 14px 32px;
+      padding: 15px 34px;
+      border: 2px solid var(--white);
       border-radius: 50px;
       text-decoration: none;
-      box-shadow: 0 4px 18px rgba(249,115,22,.35);
-      transition: background .2s, transform .2s;
+      box-shadow: 0 5px 18px rgba(0,0,0,.25);
+      transition: transform .2s, background .2s, box-shadow .2s;
     }
-    .cursos-footer-destaque:hover { background: #ea580c; transform: translateY(-2px); }
-    .cursos-footer-destaque svg { width: 20px; height: 20px; fill: var(--white); vertical-align: middle; margin-right: 8px; }
+    .btn-cursos-disponiveis:hover {
+      background: #27272a;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 22px rgba(0,0,0,.3);
+    }
+    @media (max-width: 480px) {
+      #cursos { padding: 26px 16px; }
+      .btn-cursos-disponiveis {
+        width: 100%;
+        font-size: .95rem;
+        padding: 14px 20px;
+      }
+    }
 
     /* ===== DEPOIMENTOS ===== */
     #depoimentos { background: var(--white); }
@@ -568,79 +569,11 @@
   </div>
 </section>
 
-<!-- ===== CURSOS ===== -->
+<!-- ===== FAIXA DE CURSOS ===== -->
 <section id="cursos">
-  <div class="container">
-    <h2 class="section-title">Cursos mais procurados</h2>
-    <div class="divider"></div>
-    <div class="cursos-grid">
-
-  <!-- SAÚDE -->
-  <div class="curso-item">
-    <div class="curso-nome">Saúde</div>
-    <div class="curso-info">
-      <span>• Biomedicina</span>
-      <span>• Radiologia</span>
-      <span>• Farmácia</span>
-      <span>• Fisioterapia</span>
-      <span>• Terapia Ocupacional</span>
-    </div>
-    <div class="curso-info" style="margin-top:8px;font-size:.86rem;">
-      <span><strong>Mensalidade:</strong> R$ 214,75/mês</span>
-    </div>
-  </div>
-
-  <!-- EDUCAÇÃO -->
-  <div class="curso-item">
-    <div class="curso-nome">Educação</div>
-    <div class="curso-info">
-      <span>• Pedagogia</span>
-      <span>• Letras Pt/En</span>
-      <span>• Educação Especial</span>
-      <span>• Educação Física</span>
-      <span>• História</span>
-    </div>
-    <div class="curso-info" style="margin-top:8px;font-size:.86rem;">
-      <span><strong>Mensalidade:</strong> R$ 82,50/mês</span>
-    </div>
-  </div>
-
-  <!-- EMPRESARIAL -->
-  <div class="curso-item">
-    <div class="curso-nome">Empresarial</div>
-    <div class="curso-info">
-      <span>• Administração</span>
-      <span>• Ciências Contábeis</span>
-      <span>• Gestão Financeira</span>
-      <span>• Gestão de RH</span>
-      <span>• Gestão Comercial</span>
-    </div>
-    <div class="curso-info" style="margin-top:8px;font-size:.86rem;">
-      <span><strong>Mensalidade:</strong> R$ 82,50/mês</span>
-    </div>
-  </div>
-
-  <!-- TECNOLOGIA -->
-  <div class="curso-item">
-    <div class="curso-nome">Tecnologia</div>
-    <div class="curso-info">
-      <span>• Análise e Desenvolvimento de Sistemas</span>
-      <span>• Engenharia de Software</span>
-      <span>• Engenharia da Computação</span>
-      <span>• Sistemas de Informação</span>
-      <span>• Segurança da Informação</span>
-    </div>
-    <div class="curso-info" style="margin-top:8px;font-size:.82rem;">
-      <span><strong>Mensalidade:</strong> A partir de R$ 82,50/mês</span>
-    </div>
-  </div>
-</div>
-    <div class="cursos-footer">
-      <a href="cursos.html" class="cursos-footer-destaque">
-        📋 Ver lista completa de cursos
-      </a>
-    </div>
-  </div>
+  <a href="cursos.html" class="btn-cursos-disponiveis">
+    📋 VER CURSOS DISPONÍVEIS
+  </a>
 </section>
 
 <!-- ===== DEPOIMENTOS ===== -->
